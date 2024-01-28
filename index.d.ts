@@ -32,12 +32,30 @@ export interface CameraPreviewOptions {
     disableExifHeaderStripping?: boolean;
 }
 export interface CameraPreviewPictureOptions {
+    /** Choose the camera to use 'front' or 'rear', default 'front' */
+    cameraDirection?: string;
     /** The width in pixels, default 0 */
     width?: number;
     /** The height in pixels, default 0 */
     height?: number;
     /** The picture quality, 0 - 100, default 85 */
     quality?: number;
+}
+export interface CameraPreviewCameraDirectionOption {
+    /** Choose the camera to use 'front' or 'rear', default 'front' */
+    cameraDirection?: string;
+}
+export interface CameraPreviewStartRecordVideoOptions {
+    /** Choose the camera to use 'front' or 'rear', default 'front' */
+    cameraDirection?: string;
+    /** The width in pixels, default 0 */
+    width?: number;
+    /** The height in pixels, default 0 */
+    height?: number;
+    /** The picture quality, 0 - 100, default 85 */
+    quality?: number;
+    /** Turn the flash on or not */
+    withFlash?: boolean;
 }
 /**
  * @beta
@@ -174,37 +192,37 @@ export declare class CameraPreviewOriginal extends AwesomeCordovaNativePlugin {
      * @param {any} options
      * @returns {Promise<any>}
      */
-    startRecordVideo(options: any): Promise<any>;
+    startRecordVideo(options: CameraPreviewStartRecordVideoOptions): Promise<any>;
     /**
      * Stops the camera preview instance. (iOS & Android)
      *
      * @returns {Promise<any>}
      */
-    stopCamera(): Promise<any>;
+    stopCamera(options: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Stops the camera video instance. (iOS & Android)
      *
      * @returns {Promise<any>}
      */
-    stopRecordVideo(): Promise<any>;
+    stopRecordVideo(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Switch from the rear camera and front camera, if available.
      *
      * @returns {Promise<any>}
      */
-    switchCamera(): Promise<any>;
+    switchCamera(options: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Hide the camera preview box.
      *
      * @returns {Promise<any>}
      */
-    hide(): Promise<any>;
+    hide(options: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Show the camera preview box.
      *
      * @returns {Promise<any>}
      */
-    show(): Promise<any>;
+    show(options: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Take the picture (base64)
      *
@@ -227,52 +245,52 @@ export declare class CameraPreviewOriginal extends AwesomeCordovaNativePlugin {
      * @param {string} effect name : 'none' (iOS & Android), 'aqua' (Android), 'blackboard' (Android), 'mono' (iOS & Android), 'negative' (iOS & Android), 'posterize' (iOS & Android), 'sepia' (iOS & Android), 'solarize' (Android) or 'whiteboard' (Android)
      * @returns {Promise<any>}
      */
-    setColorEffect(effect: string): Promise<any>;
+    setColorEffect(cameraDirection: string, effect: string): Promise<any>;
     /**
      * Set the zoom (Android)
      *
      * @param [zoom] {number} Zoom value
      * @returns {Promise<any>}
      */
-    setZoom(zoom?: number): Promise<any>;
+    setZoom(cameraDirection?: string, zoom?: number): Promise<any>;
     /**
      * Get the maximum zoom (Android)
      *
      * @returns {Promise<any>}
      */
-    getMaxZoom(): Promise<any>;
+    getMaxZoom(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Get current zoom (Android)
      *
      * @returns {Promise<any>}
      */
-    getZoom(): Promise<any>;
+    getZoom(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Set the preview Size
      *
      * @param {CameraPreviewDimensions} [dimensions]
      * @returns {Promise<any>}
      */
-    setPreviewSize(dimensions?: CameraPreviewDimensions): Promise<any>;
+    setPreviewSize(cameraDirection?: string, dimensions?: CameraPreviewDimensions): Promise<any>;
     /**
      * Get focus mode
      *
      * @returns {Promise<any>}
      */
-    getFocusMode(): Promise<any>;
+    getFocusMode(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Set the focus mode
      *
      * @param {string} [focusMode] 'fixed', 'auto', 'continuous-picture', 'continuous-video' (iOS & Android), 'edof', 'infinity', 'macro' (Android Only)
      * @returns {Promise<any>}
      */
-    setFocusMode(focusMode?: string): Promise<any>;
+    setFocusMode(cameraDirection: string, focusMode?: string): Promise<any>;
     /**
      * Get supported focus modes
      *
      * @returns {Promise<any>}
      */
-    getSupportedFocusModes(): Promise<any>;
+    getSupportedFocusModes(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Get the current flash mode
      *
@@ -291,51 +309,51 @@ export declare class CameraPreviewOriginal extends AwesomeCordovaNativePlugin {
      *
      * @returns {Promise<any>}
      */
-    getSupportedFlashModes(): Promise<any>;
+    getSupportedFlashModes(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Get supported picture sizes
      *
      * @returns {Promise<any>}
      */
-    getSupportedPictureSizes(): Promise<any>;
+    getSupportedPictureSizes(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Get exposure mode
      *
      * @returns {Promise<any>}
      */
-    getExposureMode(): Promise<any>;
+    getExposureMode(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Get exposure modes
      *
      * @returns {Promise<any>}
      */
-    getExposureModes(): Promise<any>;
+    getExposureModes(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Set exposure mode
      *
      * @param {string} [lock]
      * @returns {Promise<any>}
      */
-    setExposureMode(lock?: string): Promise<any>;
+    setExposureMode(cameraDirection?: string, lock?: string): Promise<any>;
     /**
      * Get exposure compensation (Android)
      *
      * @returns {Promise<any>}
      */
-    getExposureCompensation(): Promise<any>;
+    getExposureCompensation(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Set exposure compensation (Android)
      *
      * @param {number} [exposureCompensation]
      * @returns {Promise<any>}
      */
-    setExposureCompensation(exposureCompensation?: number): Promise<any>;
+    setExposureCompensation(cameraDirection?: string, exposureCompensation?: number): Promise<any>;
     /**
      * Get exposure compensation range (Android)
      *
      * @returns {Promise<any>}
      */
-    getExposureCompensationRange(): Promise<any>;
+    getExposureCompensationRange(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Set specific focus point. Note, this assumes the camera is full-screen.
      *
@@ -343,7 +361,7 @@ export declare class CameraPreviewOriginal extends AwesomeCordovaNativePlugin {
      * @param {number} yPoint
      * @returns {Promise<any>}
      */
-    tapToFocus(xPoint: number, yPoint: number): Promise<any>;
+    tapToFocus(cameraDirection: string, xPoint: number, yPoint: number): Promise<any>;
     /**
      * Add a listener for the back event for the preview
      *
@@ -355,13 +373,13 @@ export declare class CameraPreviewOriginal extends AwesomeCordovaNativePlugin {
      *
      * @returns {Promise<any>}
      */
-    getHorizontalFOV(): Promise<any>;
+    getHorizontalFOV(options?: CameraPreviewCameraDirectionOption): Promise<any>;
     /**
      * Get the characteristics of all available cameras
      *
      * @returns {Promise<any>}
      */
-    getCameraCharacteristics(): Promise<any>;
+    getCameraCharacteristics(options?: CameraPreviewCameraDirectionOption): Promise<any>;
 }
 
 export declare const CameraPreview: CameraPreviewOriginal;
